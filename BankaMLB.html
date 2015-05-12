@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+		<script type="text/javascript" src="BankaMLB.js"></script>
+		<style>
+			label { display: block; }
+			input.form-control { width: 200px; display: inline-block; }
+			span { display: inline-block; margin-left: 5px; }
+			button { display: block !important; margin-top: 20px; }
+			.calculator { display: inline-block; width: 20%; }
+			.total { position: relative; display: inline-block; width: 15%; top: 30px; vertical-align: top; }
+		</style>
+	</head>
+	<body ng-app="BankaMLB">
+		<h1>Banka MLB</h1>
+		<div ng-controller="SavingsController" class="well">
+			<div class="calculator">
+				<h2>Kalkulator varčevanja</h2>
+				<label>Višina mesečnega vplačila:</label><input class="form-control" type="text" ng-model="monthlyPayment" /><span>€</span>
+				<label>Število mesecev:</label><input class="form-control" type="text" ng-model="monthNo" />
+				<label>Mesečna obrestna mera:</label><input class="form-control" type="text" ng-model="interestRate" /><span>%</span>
+				<button class="btn btn-primary" ng-click="calculateSaving(monthlyPayment, monthNo, interestRate)">Izračunaj</button>
+			</div>
+			<div class="total">
+				<label>Skupaj:</label><span>{{ totalSavings }} €</span>
+			</div>
+		</div>
+
+		<div ng-controller="PayoutController" class="well">
+			<div class="calculator">
+				<h2>Kalkulator izplačil</h2>
+				<label>Višina mesečnega izplačila:</label><input class="form-control" type="text" ng-model="monthlyPayout" /><span>€</span>
+				<label>Število mesecev:</label><input class="form-control" type="text" ng-model="monthNo" />
+				<button class="btn btn-primary" ng-click="calculatePayout(monthlyPayout, monthNo)">Izračunaj</button>
+			</div>
+			<div class="total">
+				<label>Potrebna vsota denarja na računu:</label><span>{{ totalPayout }} €</span>
+			</div>
+		</div>
+	</body>
+</html>
